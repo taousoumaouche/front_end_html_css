@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C Clean - Votre service de nettoyage</title>
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .navbar {
+    background-color: white; 
+    color: #543C14; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo img {
+    height: 80px; 
+    margin-right: 650px;
+  }
+
+  .navbar a {
+    color: #543C14;
+    padding: 30px 15px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+	font-weight: bold;
+  }
+  .navbar a:not(:first-child) {
+    border-left: 1px solid #D2CEC9; 
+  }
+  .navbar a.first-link {
+      border-left: none; 
+  }
+
+  .navbar a:hover {
+    background-color: #543C14; 
+    color: white; 
+  }
+  .navbar a.active {
+    background-color: #543C14; 
+    color: white; 
+  }
+  .contact-bar {
+    background-color: #543C14; 
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed; 
+    top: 80px; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+  }
+  .contact-info-item {
+    margin: 0 210px; 
+  }
+  .image-carousel {
+    position: relative;
+    width: 100%;
+  }
+
+  .slides {
+    display: flex; 
+    overflow-x: auto; 
+  }
+  .slides img {
+    width: 100%;
+    height: 17.4cm; 
+    object-fit: cover;  
+  }
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 0 3px 3px 0;
+  }
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  .benefits-title {
+    text-align: center; 
+    color: #543C14; 
+    background-color: #F6E1C8; 
+    padding: 18px 0; 
+    font-size: 22px; 
+  }
+  .benefits-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #F6E1C8; 
+    padding: 20px 0; 
+  }
+  .benefit-item {
+    flex: 1;
+    text-align: center; 
+    color: #543C14;
+    padding: 0 10px;
+  }
+  .benefit-item img {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+  .benefit-item h3 {
+    margin: 5px 0;
+  }
+  .title {
+  color: #543C14;
+  padding: 18px 0;
+  font-size: 26px; 
+  font-weight: bold;
+  text-align: center;
+
+  }
+
+  /* Processus étapes */
+  .process-section, .process-steps .step h3 {
+    padding: 40px 0;
+    color: #543C14;
+  }
+
+  .process-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .step {
+    text-align: center;
+    width: 180px;
+  }
+
+  .step img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .step-number {
+    font-size: 22px;
+    color: #543C14;
+    margin: 10px 0;
+  }
+
+  .step-description {
+    font-size: 14px;
+  }
+  .contact-banner-wrapper {
+    background-color: #F6E1C8; 
+    padding: 20px 0; 
+	margin-top: 0;
+  }
+  .contact-banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; 
+    margin: auto;
+  }  
+  .banner-logo img {
+    height: 120px; 
+    margin-bottom: -20px; 
+    z-index: 1; 
+    position: relative; 
+  }
+  .banner-left, .banner-center, .banner-right {
+    flex: 1;
+    text-align: center; 
+  }
+  .banner-left {
+    text-align: left; 
+  }
+  .banner-slogan {
+    color: #543C14; 
+    margin-bottom: 10px; 
+    padding: 0 80px;
+  }
+
+  .banner-address {
+    color: #543C14; 
+    font-weight: bold;
+    margin-bottom: 20px; 
+    padding: 0 80px;
+  }
+
+  .banner-center button {
+    background-color: #543C14; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 30px; 
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .banner-center button:hover {
+    transform: translateY(-5px);
+    background-color: #6c5032; 
+  }
+
+  .banner-info {
+    color: #543C14; 
+    margin-top: 20px;
+  }
+
+  .banner-right p {
+    color: #543C14; 
+    text-align: left; 
+    margin-bottom: 20px; 
+  }
+
+  #backToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 24px;
+    background-color: #543C14;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none; 
+    z-index: 1100; 
+  }
+
+  #backToTopBtn:hover {
+    background-color: #6c5032;
+  }
+
+  #savoirFaire {
+    background-color: #F6E1C8; 
+	padding-top: 150px;
+    padding-bottom: 0; 
+  }
+  #savoirFaire .content-section:last-child {
+    margin-bottom: 0; 
+  }
+  #home {
+	padding-top: 118px;
+  }
+
+  .section-title {
+    color: #543C14;
+    text-align: center;
+  }
+
+  .content-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  } 
+  .content-section.reversed {
+    flex-direction: row-reverse;
+  }
+
+  .text-section {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    flex-basis: 60%;
+    margin-left: 20px; /* ajoutez une marge à gauche */
+    margin-right: 20px;
+  }
+  .image-section {
+    flex-basis: 40%; 
+    display: flex; 
+    justify-content: center;
+  }
+  .round-image img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content-section:not(.reversed) .text-section,
+    .content-section:not(.reversed) .image-section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .content-section .text-section,
+  .content-section .image-section {
+  margin: 0; 
+  }
+  .content-section:not(.reversed) .text-section {
+    margin-right: 20px; 
+  }
+  .text-section, .image-section {
+    flex: 1; 
+    flex-basis: 100%; 
+  }  
+  }
+  .content-section .text-section {  
+    padding: 20px; 
+    margin-right: 20px; 
+    margin-left: 20px; 
+  }
+  .content-section .image-section { 
+    margin-left: 20px; 
+  }
+
+  .content-section.reversed .text-section { 
+    margin-left: 20px; 
+   }
+  .content-section.reversed .image-section { 
+    margin-right: 20px; 
+  }
+  .last-element-class {
+    margin-bottom: 0; 
+}
+
+  .footer-class, .banner-class {
+    margin-top: 0;
+  }
+  #contact {
+    padding: 40px;
+    background-color: #F6E1C8; 
+    padding-top: 150px;
+  }
+
+  #contact .form-group {
+    margin-bottom: 20px;
+  }
+
+  #contact .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  #contact .form-group input[type="text"],
+  #contact .form-group input[type="email"],
+  #contact .form-group input[type="tel"],
+  #contact .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #543C14; 
+  }
+
+  #contact .form-group textarea {
+    height: 100px;
+  }
+
+  #contact .submit-button {
+    background-color: #543C14; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  #contact .submit-button:hover {
+    background-color: #6c5032; 
+  }
+  .address-group {
+    margin-bottom: 20px;
+  }
+
+  .address-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .address-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #543C14; 
+    margin-bottom: 10px;
+  }
+
+  .city-postal {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .city-postal .form-group {
+    flex-basis: 49%; 
+  }
+
+  @media (max-width: 768px) {
+    .city-postal {
+    flex-direction: column;
+    }
+
+  .city-postal .form-group {
+    flex-basis: 100%; 
+  }
+}
+
+
+</style>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-logo">
+    <img src="assets/logo.png" alt="Corine Clean">
+    <a href="#home" class="first-link">Accueil</a>
+    <a href="#savoirFaire">Notre savoir-faire</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+<div class="contact-bar">
+  <div class="contact-info">
+    <span class="contact-info-item">taousoumaouche@hotmail.fr</span>
+    <span class="contact-info-item">tel: 07 00 00 00 00</span>
+  </div>
+</div>
+<div id="home" class="page-section">
+<div class="image-carousel">
+  <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+  <div class="slides">
+    <img src="assets/sol.jpg" alt="Sol nettoyé">
+    <img src="assets/escalier.jpg" alt="Escalier nettoyé">
+    <img src="assets/toilette.jpg" alt="Toilette nettoyée">
+    <img src="assets/poubelle.jpg" alt="Poubelle nettoyée">
+    <img src="assets/fenetre.jpg" alt="Fenêtre nettoyée">	
+  </div>
+  <a class="next" onclick="moveSlide(1)">&#10095;</a>
+</div>
+<div class="benefits-title">
+  <h2>Pourquoi choisir C Clean?</h2>
+</div>
+<div class="benefits-section">
+  <div class="benefit-item">
+    <img src="assets/1.png" alt="Engagement pour la Qualité">
+    <h3>Engagement pour la Qualité</h3>
+    <p>Chez Corine Clean, nous sommes fiers de notre réputation d'excellence. Nos experts formés et dévoués garantissent un nettoyage impeccable, répondant et dépassant vos attentes.</p>
+  </div>
+  <div class="benefit-item">
+    <img src="assets/2.png" alt="Respect de l'Environnement">
+    <h3>Respect de l'Environnement</h3>
+    <p>Nous prenons notre responsabilité envers la planète au sérieux. Nous utilisons des produits de nettoyage écologiques et des méthodes qui respectent l'environnement, sans compromettre la propreté.</p>
+  </div>
+  <div class="benefit-item">
+    <img src="assets/3.png" alt="Équipement à la Pointe">
+    <h3>Équipement à la Pointe</h3>
+    <p>Avec les dernières technologies en matière de nettoyage, nous assurons un service rapide, efficace et en profondeur, même dans les zones les plus difficiles.</p>
+  </div>
+  <div class="benefit-item">
+    <img src="assets/4.png" alt="Tarifs Compétitifs">
+    <h3>Tarifs Compétitifs</h3>
+    <p>Nous croyons que la propreté ne doit pas être un luxe. Nos tarifs sont compétitifs et transparents, sans frais cachés.</p>
+  </div>
+  <div class="benefit-item">
+    <img src="assets/5.png" alt="Confiance et Sécurité">
+    <h3>Confiance et Sécurité</h3>
+    <p>Votre sécurité est notre priorité. Notre équipe est assurée et chaque membre est soigneusement vérifié pour vous assurer tranquillité d'esprit.</p>
+  </div>
+</div>
+<div class="process-section">
+  <div class="title">Comment ça marche ?</div>
+  <div class="process-steps">
+    <div class="step">
+      <img src="assets/66.png" alt="Premier Contact">
+      <div class="step-number">1</div>
+      <h3>Premier Contact</h3>
+      <p>Chez Co Clean, tout commence par une prise de contact. Nous évaluons vos besoins pour proposer une solution sur mesure.</p>
+    </div>
+    <div class="step">
+      <img src="assets/55.png" alt="Discussion des Détails">
+      <div class="step-number">2</div>
+      <h3>Discussion des Détails</h3>
+      <p>Une fois en contact, nous discutons des détails de votre demande pour un devis personnalisé qui répond à vos besoins.</p>
+    </div>
+    <div class="step">
+      <img src="assets/44.png" alt="Établissement du Budget">
+      <div class="step-number">3</div>
+      <h3>Établissement du Budget</h3>
+      <p>Corine Clean s'engage à fournir un service de qualité à un prix juste, avec un budget détaillé et transparent.</p>
+    </div>
+    <div class="step">
+      <img src="assets/33.png" alt="Signature du Contrat">
+      <div class="step-number">4</div>
+      <h3>Signature du Contrat</h3>
+      <p>Une fois le budget approuvé, nous passons à la signature du contrat, scellant notre engagement réciproque.</p>
+    </div>
+    <div class="step">
+      <img src="assets/22.png" alt="Lancement des Services">
+      <div class="step-number">5</div>
+      <h3>Lancement des Services</h3>
+      <p>Avec le contrat signé, nos équipes professionnelles se mettent en action, garantissant un environnement propre et serein.</p>
+    </div>
+    <div class="step">
+      <img src="assets/11.png" alt="Suivi et Adaptation">
+      <div class="step-number">6</div>
+      <h3>Suivi et Adaptation</h3>
+      <p>Nous restons à votre écoute pour toute modification ou ajustement nécessaire pour maintenir notre standard de qualité élevé.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Section cachée pour 'Notre savoir-faire' -->
+<div id="savoirFaire" class="page-section">
+    <h2 class="section-title">Découvrir C Clean</h2>
+    <div class="content-section reversed">
+        <div class="text-section">
+            <h3>Ménage à domicile</h3>
+            <p>Nous offrons des services de ménage à domicile personnalisés pour maintenir votre espace de vie impeccable. Notre équipe expérimentée se charge de toutes les tâches ménagères, de la poussière aux sols, en veillant à utiliser les meilleurs produits pour garantir un environnement sain et propre pour vous et votre famille.</p>
+        </div>
+        <div class="image-section round-image">
+            <img src="assets/assets/Ménage à domicile.jpg" alt="Ménage à domicile">
+        </div>
+    </div>
+
+    <div class="content-section reversed">
+        <div class="image-section round-image">
+            <img src="assets/Grand nettoyage.jpg" alt="Grand nettoyage">
+        </div>
+        <div class="text-section">
+            <h3>Grand nettoyage</h3>
+            <p>Parfait pour les nettoyages de printemps ou après un événement important, notre service de grand nettoyage couvre chaque coin de votre propriété. Nous nous occupons de tout, des vitres aux tapis, en utilisant des méthodes efficaces qui laissent votre espace revitalisé et rafraîchi.</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="image-section round-image">
+            <img src="assets/Nettoyage des lieux de travail.jpg" alt="Nettoyage des lieux de travail">
+        </div>
+        <div class="text-section">
+            <h3>Nettoyage des lieux de travail</h3>
+            <p>Que ce soit des magasins, des bureaux ou des entreprises industrielles, nous comprenons l'importance d'un lieu de travail propre pour la productivité et le bien-être. Notre équipe propose des solutions sur mesure pour chaque type d'entreprise, assurant un environnement de travail impeccable et professionnel.</p>
+        </div>
+    </div>
+    <div class="content-section reversed ">
+        <div class="image-section round-image">
+            <img src="assets/Prendre soin des jardins.jpg" alt="Prendre soin des jardins">
+        </div>
+        <div class="text-section">
+            <h3>Prendre soin des jardins</h3>
+            <p>Nos services d'entretien de jardins comprennent la taille, le désherbage, l'arrosage et la gestion générale du paysage pour embellir vos espaces extérieurs et créer des environnements verts sains.</p>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="image-section round-image">
+            <img src="assets/Nettoyage des escaliers.jpg" alt="Nettoyage des escaliers">
+        </div>
+        <div class="text-section">
+            <h3>Nettoyage des escaliers</h3>
+            <p>Les escaliers sont souvent des points de passage intensifs nécessitant un entretien régulier. Nous proposons des services de nettoyage d'escaliers pour des immeubles résidentiels et commerciaux, garantissant des espaces sûrs et accueillants pour tous les usagers.</p>
+        </div>
+    </div>
+    <div class="content-section reversed">
+        <div class="image-section round-image">
+            <img src="assets/Nettoyage après la fin d'un chantier.jpg" alt="Nettoyage après la fin d'un chantier">
+        </div>
+        <div class="text-section">
+            <h3>Nettoyage après la fin d'un chantier</h3>
+            <p>Le nettoyage après chantier demande une expertise particulière pour éliminer tous les résidus de construction et laisser les lieux prêts à l'emploi. Notre équipe s'occupe de tout, assurant un nettoyage complet et minutieux après vos projets de construction ou de rénovation.</p>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="image-section round-image">
+            <img src="assets/toilette1.jpg" alt="Nettoyage des toilettes">
+        </div>
+        <div class="text-section">
+            <h3>Nettoyage des toilettes</h3>
+            <p>Nos services de nettoyage des toilettes sont conçus pour maintenir des standards d'hygiène élevés dans les espaces publics et privés. Avec des désinfectants de qualité et une attention méticuleuse aux détails, nous assurons la propreté et la fraîcheur de vos installations sanitaires.</p>
+        </div>
+    </div>
+    <div class="content-section reversed">
+        <div class="image-section round-image">
+            <img src="assets/poubelle1.jpg" alt="Sortie de la poubelle">
+        </div>
+        <div class="text-section">
+            <h3>Sortie de la poubelle</h3>
+            <p>Nous prenons en charge la gestion et la sortie des poubelles pour des immeubles résidentiels et des entreprises, en respectant les réglementations locales et en veillant à la propreté des zones de collecte.</p>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="text-section ">
+            <h3>Et bien plus encore !</h3>
+            <p>Au-delà de ces services, nous offrons des solutions personnalisées pour répondre à tous vos besoins en nettoyage. Contactez-nous pour découvrir comment nous pouvons vous aider à maintenir un environnement propre et accueillant, quel que soit votre besoin.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+<div id="contact" class="page-section" style="background-color: #F6E1C8;">
+  <h2 class="section-title">Contactez-nous</h2>
+  <form>
+    <div class="form-group">
+      <label for="firstName">Prénom</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Votre nom" required>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="Votre e-mail" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Téléphone</label>
+      <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone" required>
+    </div>
+<div class="form-group address-group">
+  <label for="street">Adresse</label>
+  <input type="text" id="street" name="street" placeholder="Adresse" required>
+
+  <label for="additional">Complément d'adresse</label>
+  <input type="text" id="additional" name="additional" placeholder="Complément d'adresse">
+
+  <div class="city-postal">
+    <div class="form-group half-width">
+      <label for="city">Ville</label>
+      <input type="text" id="city" name="city" placeholder="Ville" required>
+    </div>
+    <div class="form-group half-width">
+      <label for="postal">Code postal</label>
+      <input type="text" id="postal" name="postal" placeholder="Code postal" required>
+    </div>
+  </div>
+
+  <label for="building-code">Code de l'immeuble</label>
+  <input type="text" id="building-code" name="building-code" placeholder="Code de l'immeuble">
+</div>
+
+    <div class="form-group">
+      <label for="message">Votre message</label>
+      <textarea id="message" name="message" placeholder="Votre message ici" required></textarea>
+    </div>
+    <div class="form-group">
+      <input type="checkbox" id="privacy" name="privacy" required>
+      <label for="privacy">J'accepte la politique de confidentialité</label>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="submit-button">Envoyer</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- Section finale beige toujours visible -->
+<div class="contact-banner-wrapper">
+  <div class="contact-banner-content">
+    <div class="banner-left">
+      <p class="banner-slogan"><strong>C Clean</strong> – L'éclat de votre environnement, notre passion quotidienne.</p>
+      <p class="banner-address"><strong>2 Avenue Ernest Pivot</strong><br>93270 Sevran</p>
+    </div>
+    <div class="banner-center">
+      <div class="banner-logo">
+        <img src="assets/logo.png" alt="Logo C Clean">
+      </div>
+      <button>Contactez-nous</button>
+		<div class="banner-info">
+		  <div>tel: 07 00 00 00 00</div> 
+		  <div>taousoumaouche@hotmail.fr</div>
+		</div>
+    </div>
+    <div class="banner-right">
+      <p><strong>Zone d’intervention :</strong><br>Ile de France</p>
+      <p><strong>Horaires des bureaux :</strong><br>Du lundi au vendredi</p>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var slideIndex = 1;
+  showSlides(slideIndex);
+  var autoSlideInterval = setInterval(function() { moveSlide(1); }, 5000); 
+  function moveSlide(n) {
+    clearInterval(autoSlideInterval); 
+    showSlides(slideIndex += n);
+    autoSlideInterval = setInterval(function() { moveSlide(1); }, 5000); 
+  }
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slides")[0].getElementsByTagName("img");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  }
+  var prevBtn = document.querySelector('.prev');
+  var nextBtn = document.querySelector('.next');
+  prevBtn.addEventListener('click', function() {
+    moveSlide(-1);
+  });
+  nextBtn.addEventListener('click', function() {
+    moveSlide(1);
+  });
+  document.addEventListener('scroll', function() {
+    var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollPosition > 100) {
+      document.getElementById('backToTopBtn').style.display = 'block';
+    } else {
+      document.getElementById('backToTopBtn').style.display = 'none';
+    }
+  });
+
+  document.getElementById('backToTopBtn').addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('.navbar a');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); 
+      var targetSection = document.querySelector(this.getAttribute('href')); 
+      document.querySelectorAll('.page-section').forEach(function(section) {
+        section.style.display = 'none';
+      });
+      if (targetSection) {
+        targetSection.style.display = 'block';
+      }
+    });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('.navbar a');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      links.forEach(lnk => lnk.classList.remove('active'));
+      this.classList.add('active');
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      document.querySelectorAll('.page-section').forEach(sec => sec.style.display = 'none');
+      if (targetSection) {
+        targetSection.style.display = 'block';
+      }
+    });
+  });
+  document.querySelector('.navbar a[href="#home"]').click();
+});
+</script>
+<button id="backToTopBtn" style="display: none;">&#8679;</button>
+</body>
+</html>
