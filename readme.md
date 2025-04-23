@@ -13,11 +13,22 @@ Cette page présente les services, les engagements et le processus de travail de
 ---
 
 ## Fonctionnalités  
-- Mise en page moderne avec HTML5 et CSS3  
-- Section "Pourquoi nous choisir" avec icônes et explications  
-- Présentation du déroulement des services en 6 étapes  
-- Pied de page complet avec coordonnées et informations pratiques  
-- Responsive simple pour s'adapter à différents écrans
+Ce site vitrine statique présente les services de l’entreprise **C Clean** à travers plusieurs pages :
+- **Page d’accueil** : mise en avant des engagements, des valeurs et de la qualité des services. 
+
+- **Page “Découvrir C Clean”** : détail des différentes prestations proposées :
+  - Ménage à domicile  
+  - Grand nettoyage (nettoyage de printemps, après événement…)  
+  - Nettoyage des lieux de travail (bureaux, magasins, industries)  
+  - Entretien des jardins (taille, désherbage, arrosage…)  
+  - Nettoyage des escaliers (immeubles résidentiels et commerciaux)  
+  - Nettoyage après chantier (post-travaux)  
+  - Nettoyage des toilettes (hygiène des espaces publics et privés)  
+  - Sortie des poubelles (gestion respectueuse des déchets)
+  - … et des offres personnalisées selon les besoins des clients.
+
+- **Page Contact** : formulaire simple permettant aux visiteurs de laisser un message, avec leurs informations (nom, téléphone, e-mail, adresse).
+
 
 ---
 
